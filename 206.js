@@ -10,3 +10,20 @@ var reverseList = function (head) {
 
   return prev;
 };
+
+
+//recursion
+var reverseList = function (head) {
+
+  let ans = null
+  const helper = (node, next) => {
+    if (!node) return
+    let temp = node.next
+    node.next = ans
+    ans = node
+    helper(temp, ans)
+  }
+
+  helper(head, ans)
+  return ans
+};
