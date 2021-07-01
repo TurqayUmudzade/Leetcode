@@ -1,3 +1,4 @@
+//First way
 const fun = (a, b, target) => {
     let arr = []
     for (let i = 0; i < a.length; i++) {
@@ -18,6 +19,10 @@ const fun = (a, b, target) => {
     if (ans[0]) return ans
     else return []
 }
+
+
+//Max Heap
+c
 
 let a = [[1, 8], [2, 15], [3, 9]]
 

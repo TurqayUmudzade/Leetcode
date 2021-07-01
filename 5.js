@@ -1,25 +1,20 @@
-
 var longestPalindrome = function (s) {
-    let temp = ""
-    let max = temp
+    let max = '';
     for (let i = 0; i < s.length; i++) {
+        for (const j of [0, 1]) {
+            let left = i;
+            let right = i + j;
+            while (left >= 0 && s[left] === s[right]) {
+                left--;
+                right++;
+            }
 
-        temp += s[i]
-        if (isPalindrome(temp)) {
-            if (temp.length > max.length) max = temp
+            if (right - left - 1 > max.length) max = s.substring(left + 1, right);
         }
 
+        if (Math.ceil(max.length / 2) >= s.length - i) break;
     }
-    return max
+    return max;
 };
 
-
-
-const isPalindrome = (s) => {
-    for (let i = 0; i < s.length; i++)
-        if (s[i] !== s[s.length - 1 - i]) return false
-    return true
-}
-
-
-console.log(longestPalindrome("cbbd"));
+console.log(longestPalindrome("babad"));

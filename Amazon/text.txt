@@ -1,0 +1,91 @@
+https://leetcode.com/discuss/interview-question/1256253/Amazon-Phone-interview-SDE-I
+Opreating Systems questions:
+
+What is a mutex? What as an interpeter?
+
+LP: Tell me about a time where you had to acomplish a task and had limited time
+LP: Tell me about a time where you had to make decision based on little data
+
+DS: https://leetcode.com/problems/longest-palindrome/
+
+https://leetcode.com/discuss/interview-question/1258076/Amazon-Phone-Interview-or-SDE
+Given a graph, compelete the function below to find the longest path.
+
+public int findLongestPath(Map<Integer,List<Integer>>){
+
+}
+
+Input Map:
+1 [2,3,4]
+2 [1,5,6]
+3 [1]
+4 [1,7]
+5 [2]
+6 [2]
+7 [4]
+
+O/p - 4
+
+https://leetcode.com/discuss/interview-question/1279274/Amazon-Phone-Interview-Question
+
+Hi recently had phone screen with Amazon after 35 mins of LP was asked below question
+
+Given 'budget' and prices for each category of ads (mxn int array), pick one price from each category and maximize the budget utilization
+
+budget = 30
+adPrices=
+[3,1,5,7,10]
+[7,9,2,20,10]
+[3,1,9,45,51]
+
+ans = 30 (take 7 from first, 20 from second and 3 from third category) thanks @lakh for correction
+
+I came up with a greedy approach by sorting each array and then using heap to move my indices starting with lowest in each category, but this didn't work for some cases - O (mn Max(log m, log n)). Brute force is n^m, any ideas?
+
+https://leetcode.com/discuss/interview-question/1302906/Amazon-or-SDE-1-or-Phone
+
+Company : Amazon
+Role : SDE I
+Location : Europe
+Stage : Phone screen (4/5)
+Duree : 1h
+
+Me:
+Experience : 0 only internship
+Diploma : Master
+Leetcode easy : 41
+Leetcode medium : 51
+Leetcode hard : 3
+I took Leetcode premium and assements were very pleasent and usefull
+
+Behavioural:
+
+Tell me about a time you didn't know what to do next in your project, and how did you handle that
+Tell me about a time you had deep dive into something new, and what was the outcome
+Technical:
+
+What is java Spring, what are the benefits, why for each benefit
+How did you use it, why. What would you tell me to convince me that Java Spring is a good fit for this project
+Problem-solving:
+
+https://leetcode.com/problems/peak-index-in-a-mountain-array/ (didn't need to code it)
+https://leetcode.com/problems/two-sum/ (Something similar)
+Why this is not always o(n) time complexity (response: hashmap collision)
+How do you handle hashmap collision
+How would you code a hashmap
+Kind of Fibonacci, asked to not code with memorisation
+Time complexity (2^n)
+Space complexity (2^n) because of the recursive stack
+Why use memorisation
+time & space complexity with memorisation
+Had time to ask 2 questions
+
+My feeling:
+
+Behavioral did ok
+Technical did ok but not enough
+Problem solving
+Great
+Ok but had a problem understanding the question, and didn't have answer for not o(n) and collision
+Ok but had a problem with time complexity without memorization, I will know now
+Guess it will be a failure but it was a great experience and important for the future.

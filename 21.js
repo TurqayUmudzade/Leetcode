@@ -1,17 +1,29 @@
-var mergeTwoLists = function (l1, l2) {
-    if (!l1 && !l2) return l1
 
-    let p1 = l1
-    let p2 = l2
-    while (p1 && p2) {
-        if (p1.val >= p2.val) {
-            let temp = p2.next
-            p2.next = p1
-            p1 = p2
-            p2 = temp
-        } else
-            p1 = p1.next
+function ListNode(val, next) {
+    this.val = (val === undefined ? 0 : val)
+    this.next = (next === undefined ? null : next)
+}
+
+
+const mergeTwoLists = (l1, l2) => {
+    if (!l1 && !l2) return null
+    if (!l1) return l2
+    if (!l2) return l1
+
+    let head = new ListNode()
+    cur = head
+    while (l1 && l2) {
+        if (l1.val < l2.val) {
+            cur.next = l1
+            l1 = l1.next
+        } else {
+            cur.next = l2
+            l2 = l2.next
+        }
+        cur = cur.next
     }
 
-    return l1
-};
+    cur.next = l1 || l2
+
+    return head.next
+}
