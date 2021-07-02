@@ -1,9 +1,12 @@
-var maxArea = function (height) {
+var maxArea = function (arr) {
     let max = 0
-    for (let i = 0; i < height.length; i++) {
-        for (let j = i; j < height.length; j++) {
-            max = Math.max(max, Math.min(height[i], height[j]) * (j - i))
-        }
+    let left = 0
+    let right = arr.length - 1
+
+    while (left < right) {
+        max = Math.max(max, (right - left) * Math.min(arr[left], arr[right]))
+        if (arr[left] < arr[right]) left++
+        else right--
     }
     return max
 };
