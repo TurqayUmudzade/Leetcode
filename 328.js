@@ -1,17 +1,21 @@
-var oddEvenList = function (head) {
-  if (!head) return null;
 
-  const isEven = (n) => {
-    if (n % 2 === 0) return true;
-    else return false;
-  };
+function ListNode(val, next) {
+  this.val = (val === undefined ? 0 : val)
+  this.next = (next === undefined ? null : next)
+}
 
-  let cur = head;
-  if (odd.next)
-    while (cur) {
-      if (!isEven(cur.val)) {
-        odd.next;
-      }
-      cur = cur.next;
-    }
-};
+
+function oddEvenList(head) {
+  if (!head) return head;
+
+  let odd = head;
+  let even = head.next;
+  while (odd.next && odd.next.next) {
+    let tmp = odd.next;
+    odd.next = odd.next.next;
+    odd = odd.next;
+    tmp.next = odd.next;
+  }
+  odd.next = even;
+  return head;
+}
