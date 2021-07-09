@@ -1,16 +1,15 @@
-var reverseList = function (head) {
-  let prev = null;
+const reverseList = (head) => {
+  let reverse = null
 
   while (head) {
-    let temp = head.next;
-    head.next = prev;
-    prev = head;
-    head = temp;
+    let temp = head.next
+    head.next = reverse
+    reverse = head
+    head = temp
   }
 
-  return prev;
-};
-
+  return reverse
+}
 
 //recursion
 var reverseList = function (head) {
@@ -27,3 +26,7 @@ var reverseList = function (head) {
   helper(head, ans)
   return ans
 };
+
+
+
+

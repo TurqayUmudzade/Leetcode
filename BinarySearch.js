@@ -13,8 +13,7 @@ const binarySearch = (arr, n) => {
 }
 
 const binarySearchR = (arr, n, left = 0, right = arr.length - 1) => {
-    if (left > right)
-        return -1
+    if (left > right) return -1
 
     let mid = ((left + right) / 2) | 0
     if (arr[mid] === n) return mid

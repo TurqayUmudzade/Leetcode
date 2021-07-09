@@ -11,19 +11,20 @@ const mergeTwoLists = (l1, l2) => {
     if (!l2) return l1
 
     let head = new ListNode()
-    cur = head
+    let p = head
+
     while (l1 && l2) {
         if (l1.val < l2.val) {
-            cur.next = l1
+            head.next = l1
             l1 = l1.next
         } else {
-            cur.next = l2
+            head.next = l2
             l2 = l2.next
         }
-        cur = cur.next
+        head = head.next
     }
 
-    cur.next = l1 || l2
+    head.next = l1 || l2
+    return p.next
 
-    return head.next
 }
