@@ -1,22 +1,43 @@
+
+
+
 var diameterOfBinaryTree = function (root) {
-    return maxDepth(root.left) + maxDepth(root.rigth)
+    let diameter = 0;
+
+    dfs(root);
+
+    return diameter;
+
+    function dfs(node, level) {
+        if (!node) return 0;
+
+        const left = dfs(node.left);
+        const right = dfs(node.right);
+
+        // update diameter at every node
+        diameter = Math.max(diameter, left + right);
+
+        // update the largest number of edge so far
+        return 1 + Math.max(left, right);
+    }
 };
 
-var maxDepth = function (root) {
-    if (!root) return 0
 
+
+const diameterOfBinaryTree = (root) => {
     let max = 0
 
-    const dfs = (root, depth) => {
-        if (!root) {
-            max = Math.max(max, depth)
-            return
-        }
-        dfs(root.right, depth + 1)
-        dfs(root.left, depth + 1)
+
+    const dfs = (root) => {
+        if (!root) return
+
+        const left = dfs(root.left)
+        const right = dfs(root.right)
+
+        max = Math.max(max, left + right)
+
+        return Math.max(left, right) + 1
     }
-
-    dfs(root, max)
+    dfs(root)
     return max
-
-};
+}

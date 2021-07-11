@@ -1,30 +1,19 @@
+const copyRandomList = (head) => {
+    if (!head) return null
 
-
-function Node(val, next, random) {
-    this.val = val;
-    this.next = next;
-    this.random = random;
-};
-
-var copyRandomList = function (head) {
-    let list = new Node()
-    let p = list
-
-    let copy = head
-    while (head) {
-        list.next = new Node(head.val)
-        head = head.next
-        list = list.next
+    let map = new Map()
+    let cur = head
+    while (cur) {
+        map.set(cur, new Node(cur.val))
+        cur = cur.next
     }
 
-    head = copy
-    list = p
-    while (head) {
-        list.random
-        head = head.next
-        list = list.next
+    cur = head
+    while (cur) {
+        map.get(cur).next = map.get(cur.next) || null
+        map.get(cur).random = map.get(cur.random) || null
+        cur = cur.next
     }
 
-    return p
-
-};
+    return map.get(head)
+}
