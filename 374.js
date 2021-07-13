@@ -1,3 +1,9 @@
+var PriorityQueue = require('priorityqueuejs');
+
+
+Map.prototype.getOrElse = function (key, value) {
+    return this.has(key) ? this.get(key) : value
+}
 var guessNumber = function (n) {
     let l = 1, r = n;
     while (l <= r) {

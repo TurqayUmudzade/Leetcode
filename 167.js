@@ -1,10 +1,15 @@
-const twoSum = (numbers, target) => {
-  let p1 = 0;
-  let p2 = numbers.length - 1;
 
-  while (numbers[p1] + numbers[p2] !== target)
-    if (numbers[p1] + numbers[p2] > target) p2--;
-    else p1++;
+const twoSum = (arr, sum) => {
 
-  return [p1 + 1, p2 + 1];
+  let l = 0
+  let r = arr.length - 1
+
+  while (l < r) {
+    if (arr[l] + arr[r] === sum) return [l + 1, r + 1]
+    else if (arr[l] + arr[r] > sum) r--
+    else l++
+  }
 };
+
+
+twoSum([2, 7, 11, 15], 9)

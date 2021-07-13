@@ -1,30 +1,18 @@
-var kClosest = function (points, k) {
+const kClosest = (points, k) => {
 
-    const distance = (x, y) => {
-        return x ** 2 + y ** 2
-    }
-
-    let arr = []
-    for (let i = 0; i < points.length; i++) {
-        arr.push({
-            distance: distance(points[i][0], points[i][1]),
-            index: i
-        })
-    }
-
-    arr.sort((a, b) => a.distance - b.distance)
+    const dist = (x, y) => x ** 2 + y ** 2
 
     let ans = []
-    for (let i = 0; i < k; i++) {
-        ans.push(points[arr[i].index])
-    }
-    return ans
-};
+    for (const [x, y] of points)
+        ans.push({ dist: dist(x, y), points: [x, y] })
 
-kClosest([[1, 3], [-2, 2]], 1)
+    ans.sort((a, b) => a.dist - b.dist)
 
-var kClosest = function (points, K) {
-    points.sort((a, b) => (a[0] * a[0] + a[1] * a[1]) - (b[0] * b[0] + b[1] * b[1]))
+    return ans.slice(0, k).map(e => e.points)
+}
 
-    return points.slice(0, K)
-};
+const kClosest = (points, K) =>
+    points.sort((a, b) => (a[0] * a[0] + a[1] * a[1]) - (b[0] * b[0] + b[1] * b[1])).slice(0, K)
+
+
+console.log(kClosest([[3, 3], [5, -1], [-2, 4]], 2));
