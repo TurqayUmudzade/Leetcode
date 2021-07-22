@@ -1,10 +1,8 @@
-//BFS
-var maxDepth = function (root) {
+const maxDepth = (root) => {
     if (!root) return 0
-
     let q = [root]
     let depth = 0
-    while (q[0]) {
+    while (q.length > 0) {
         let len = q.length
         for (let i = 0; i < len; i++) {
             let cur = q.shift()
@@ -14,48 +12,21 @@ var maxDepth = function (root) {
         }
         depth++
     }
+
     return depth
+}
 
-};
-
-
-//DFS
-var maxDepth = function (root) {
-    if (!root) return 0
-
-    let max = 0
-
+const maxDepth = (root) => {
+    let maxDepth = 0
     const dfs = (root, depth) => {
         if (!root) {
-            max = Math.max(max, depth)
+            maxDepth = Math.max(maxDepth, depth)
             return
         }
-        dfs(root.right, depth + 1)
         dfs(root.left, depth + 1)
+        dfs(root.right, depth + 1)
     }
 
-    dfs(root, max)
-    return max
-
-};
-
-
-
-var maxDepth = function (root) {
-    if (!root) return 0
-
-    let max = 0
-
-    const dfs = (root, depth) => {
-        if (!root) {
-            max = Math.max(max, depth)
-            return
-        }
-        dfs(root.right, depth + 1)
-        dfs(root.left, depth + 1)
-    }
-
-
-    return dfs(root, max)
-
-};
+    dfs(root, 0)
+    return maxDepth
+}

@@ -1,18 +1,22 @@
 var countUnivalSubtrees = function (root) {
-    if (!root) return 0
+    let count = 0;
 
-    let c = 0
+    dfs(root);
 
-    const dfs = (root) => {
-        if (!root) return
-        if (root.left && root.right && root.left.val === root.right.val) c++
-        else if (root.left && root.left.val === root.val) c++
-        else if (root.right && root.right.val === root.val) c++
-        dfs(root.left)
-        dfs(root.right)
+    return count;
+
+    function dfs(node) {
+        if (node == null) return true;
+
+        const left = dfs(node.left);
+        const right = dfs(node.right);
+
+        if (!left || !right) return false;
+
+        if (node.left != null && node.left.val != node.val) return false;
+        if (node.right != null && node.right.val != node.val) return false;
+
+        count++;
+        return true;
     }
-
-    dfs(root)
-
-    return c
 };

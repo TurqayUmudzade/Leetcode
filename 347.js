@@ -1,8 +1,5 @@
 var PriorityQueue = require('priorityqueuejs');
 
-
-
-
 var topKFrequent = function (arr, k) {
 
     if (k == arr.length) return arr
@@ -13,7 +10,7 @@ var topKFrequent = function (arr, k) {
         else map.set(arr[i], 1)
     }
 
-    let heap = new PriorityQueue((a, b) => map.get(a) - map.get(b))
+    let heap = new PriorityQueue((a, b) => map.get(b) - map.get(a))
 
     for (const n of map.keys()) {
         heap.enq(n)
@@ -22,11 +19,12 @@ var topKFrequent = function (arr, k) {
 
     let top = new Array(k)
 
-    for (let i = k - 1; i >= 0; --i) {
+    for (let i = 0; i < top.length; i++) {
         top[i] = heap.deq()
+
     }
     return top
 };
 
 
-console.log(topKFrequent([2, 1, 1, 1, 2, 2, 3], 2));
+console.log(topKFrequent([1, 1, 1, 2, 2, 3], 2));
