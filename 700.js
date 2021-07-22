@@ -1,17 +1,17 @@
-var searchBST = function (root, val) {
+const searchBST = (root, val) => {
+    if (!root) return null
+    if (root.val === val) return root
+    if (root.val < val) return searchBST(root.right, val)
+    else return searchBST(root.left, val)
+}
 
-    let ans = null
-    const dfs = (root) => {
-        if (!root) return
-        if (root.val === val) {
-            ans = root
-            return
-        }
-        dfs(root.left)
-        dfs(root.right)
+
+const searchBST = (root, val) => {
+    if (!root) return null
+    while (root) {
+        if (root.val === val) return root
+        if (root.val < val) root = root.right
+        else root = root.left
     }
-
-    dfs(root)
-
-    return ans
-};
+    return null
+}

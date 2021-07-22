@@ -1,20 +1,24 @@
-var isValidBST = function (root) {
+const isValidBST = (root) => {
 
-    let arr = []
-    const traverse = (root) => {
+    let tree = []
+    const inOrderTraversal = (root) => {
         if (!root) return
-        traverse(root.left)
-        arr.push(root.val)
-        traverse(root.right)
+        inOrderTraversal(root.left)
+        tree.push(root.val)
+        inOrderTraversal(root.right)
     }
 
-    const isSorted = (a) => {
-        for (let i = 1; i < a.length; i++)
-            if (a[i - 1] >= a[i]) return false
+    inOrderTraversal(root)
 
-        return true
+    for (let i = 1; i < tree.length; i++) {
+        if (tree[i - 1] >= tree[i]) return false
     }
+    return true
+}
 
-    traverse(root)
-    return isSorted(arr)
+var isValidBST = function (root, min = null, max = null) {
+    if (!root) return true;
+    if (min && root.val <= min.val) return false;
+    if (max && root.val >= max.val) return false;
+    return isValidBST(root.left, min, root) && isValidBST(root.right, root, max);
 };
