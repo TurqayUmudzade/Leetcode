@@ -1,0 +1,24 @@
+{
+  "name": "Leetcode",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TurqayUmudzade/Leetcode.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TurqayUmudzade/Leetcode/issues"
+  },
+  "homepage": "https://github.com/TurqayUmudzade/Leetcode#readme",
+  "dependencies": {
+    "@datastructures-js/priority-queue": "^5.1.1"
+  },
+  "type": "module"
+}
