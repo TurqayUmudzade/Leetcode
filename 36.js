@@ -26,3 +26,27 @@ var isValidSudoku = function (board) {
     }
     return true
 };
+
+
+function isValidSudoku(board) {
+
+    for (let i = 0; i < 9; i++) {
+        let row = new Set(),
+            col = new Set(),
+            box = new Set();
+
+        for (let j = 0; j < 9 j++) {
+            if (row.has(board[i][j])) return false
+            else row.add(board[i][j])
+
+            if (col.has(board[j][i])) return false
+            else col.add(board[j][i])
+
+            if (col.has(board[j][i])) return false
+            else col.add(board[j][i])
+        }
+    }
+
+    return true
+
+}
