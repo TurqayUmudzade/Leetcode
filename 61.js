@@ -3,21 +3,27 @@ var rotateRight = function (head, k) {
     if (!head) return null
     if (!head.next) return head
 
-    let old_tail = head
-    for (var n = 1; old_tail.next; n++)
-        old_tail = old_tail.next
-
-    if (k % n === 0) {
-        return head
+    let len = 0
+    let cur = head
+    while (cur) {
+        len++
+        cur = cur.next
     }
-    old_tail.next = head
 
+    k = k % len
+    if (!k) return head //if k is 0
 
-    let new_tail = head
-    for (let i = 0; i < n - k % n - 1; i++)
-        new_tail = new_tail.next
+    cur = head
+    for (let i = 0; i < len - k - 1; i++)   cur = cur.next
 
-    let new_head = new_tail.next
-    new_tail.next = null
-    return new_head
+    let start = cur.next
+    cur.next = null
+
+    let ans = start
+
+    while (start.next) start = start.next
+
+    start.next = head
+
+    return ans
 };
