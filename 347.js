@@ -1,8 +1,8 @@
-var PriorityQueue = require('priorityqueuejs');
+import {
+    MinPriorityQueue
+} from '@datastructures-js/priority-queue';
 
 var topKFrequent = function (arr, k) {
-
-    if (k == arr.length) return arr
 
     let map = new Map()
     for (let i = 0; i < arr.length; i++) {
@@ -10,21 +10,17 @@ var topKFrequent = function (arr, k) {
         else map.set(arr[i], 1)
     }
 
-    let heap = new PriorityQueue((a, b) => map.get(b) - map.get(a))
-
-    for (const n of map.keys()) {
-        heap.enq(n)
-        if (heap.size() > k) heap.deq()
+    let heap = new MinPriorityQueue()
+    for (const [key, value] of map.entries()) {
+        heap.enqueue(key, value)
+        if (heap.size() > k) heap.dequeue()
     }
 
-    let top = new Array(k)
+    let ans = []
+    for (let i = k - 1; i >= 0; i--)  ans[i] = heap.dequeue().element
 
-    for (let i = 0; i < top.length; i++) {
-        top[i] = heap.deq()
 
-    }
-    return top
+    return ans
 };
-
 
 console.log(topKFrequent([1, 1, 1, 2, 2, 3], 2));

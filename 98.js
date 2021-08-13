@@ -10,9 +10,9 @@ const isValidBST = (root) => {
 
     inOrderTraversal(root)
 
-    for (let i = 1; i < tree.length; i++) {
+    for (let i = 1; i < tree.length; i++)
         if (tree[i - 1] >= tree[i]) return false
-    }
+
     return true
 }
 
@@ -22,5 +22,7 @@ const isValidBST = (root, min = null, max = null) => {
     if (!root) return true;
     if (min && root.val <= min.val) return false;
     if (max && root.val >= max.val) return false;
-    return isValidBST(root.left, min, root.val) && isValidBST(root.right, root.val, max);
+    return isValidBST(root.left, min, root) && isValidBST(root.right, root, max);
 }
+
+

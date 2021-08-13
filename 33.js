@@ -1,42 +1,31 @@
-var search = function (nums, target) {
-    let left = 0;
-    let right = nums.length - 1;
+let search = (arr, target) => {
 
-    while (left <= right) {
-        let mid = Math.floor((left + right) / 2);
 
-        if (nums[mid] === target) {
-            return mid;
+    function findPivot(arr) {
+        let left = 0, right = arr.length - 1
+        while (left <= right) {
+            let mid = Math.floor((left + right) / 2);
+            if (arr[mid + 1] < arr[mid]) return mid
+            if (arr[mid] < arr[left]) right = mid - 1;
+            else left = mid + 1;
+
         }
+        return 0
+    }
+    let pivot = findPivot(arr)
 
-        // When dividing the roated array into two halves, one must be sorted.
+    let binarySearch = (left, right) => {
+        while (left <= right) {
+            let mid = Math.floor((left + right) / 2);
+            if (arr[mid] === target) return mid
+            else if (arr[mid] > target) right = mid - 1
+            else left = mid + 1
 
-        // Check if the left side is sorted
-        if (nums[left] <= nums[mid]) {
-            if (nums[left] <= target && target <= nums[mid]) {
-                // target is in the left
-                right = mid - 1;
-
-            } else {
-                // target is in the right
-                left = mid + 1;
-            }
         }
-
-        // Otherwise, the right side is sorted
-        else {
-            if (nums[mid] <= target && target <= nums[right]) {
-                // target is in the right
-                left = mid + 1;
-
-            } else {
-                // target is in the left
-                right = mid - 1;
-            }
-        }
-
-
+        return -1
     }
 
-    return -1;
-};
+    let a = binarySearch(0, pivot)
+    let b = binarySearch(pivot + 1, arr.length - 1)
+    return a === -1 ? b : a
+}

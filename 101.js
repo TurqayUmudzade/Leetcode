@@ -18,7 +18,6 @@ const isSymmetric = (root) => {
     let q = [root, root]
 
     while (q.length > 0) {
-        let len = q.length
         let node1 = q.shift()
         let node2 = q.shift()
         if (!node1 && !node2) continue
@@ -30,8 +29,3 @@ const isSymmetric = (root) => {
 
     return true
 }
-
-
-
-
-
