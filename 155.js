@@ -5,19 +5,13 @@ class MinStack {
     }
 
     push(val) {
-        if (this.size == 0) { this.arr[this.size] = [val, val] }
-        else {
-            if (this.arr[this.size - 1][1] > val) {
-                this.arr[this.size] = [val, val]
-            } else {
-                this.arr[this.size] = [val, this.arr[this.size - 1][1]]
-            }
-        }
+        if (this.size === 0) this.arr.push([val, val])// if stack empty we have no prev min val
+        else this.arr.push([val, Math.min(val, this.arr[this.size - 1][1])])
         this.size++
     }
 
     pop() {
-        this.arr[this.size] = null
+        this.arr.pop()
         this.size--
     }
 
