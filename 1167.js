@@ -1,13 +1,14 @@
 var connectSticks = function (arr) {
-    arr = arr.sort((a, b) => a - b)
-    let sum = 0
-    while (arr[1]) {
-        let sumLevel = 0
-        for (let j = 0; j < arr.length; j++) {
-            sumLevel += arr[j]
-        }
-        sum += sumLevel
-        arr.pop()
+    let cost = 0
+    let minHeap = new MinPriorityQueue()
+    for (let i = 0; i < arr.length; i++)
+        minHeap.enqueue(arr[i])
+
+    while (minHeap.size() > 1) {
+        let a = minHeap.dequeue().element
+        let b = minHeap.dequeue().element
+        cost += a + b
+        minHeap.enqueue(a + b)
     }
-    return sum
+    return cost
 };
