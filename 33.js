@@ -6,7 +6,7 @@ let search = (arr, target) => {
         while (left <= right) {
             let mid = Math.floor((left + right) / 2);
             if (arr[mid + 1] < arr[mid]) return mid
-            if (arr[mid] < arr[left]) right = mid - 1;
+            if (arr[left] > arr[mid]) right = mid - 1;
             else left = mid + 1;
 
         }
@@ -29,3 +29,5 @@ let search = (arr, target) => {
     let b = binarySearch(pivot + 1, arr.length - 1)
     return a === -1 ? b : a
 }
+
+

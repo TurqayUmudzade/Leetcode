@@ -24,5 +24,5 @@ const binarySearchR = (arr, n, left = 0, right = arr.length - 1) => {
 }
 
 
-let arr = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-console.log(binarySearchR(arr, 9));
+let arr = [1]
+console.log(binarySearch(arr, 1));
