@@ -1,18 +1,14 @@
 var rob = function (nums) {
 
-    if (!nums) return 0
-    if (nums.length === 1) return nums[0]
-    if (nums.length === 2) return Math.max(nums[0], nums[1])
+    let memo = new Map()
+    let dfs = (i) => {
+        if (i >= nums.length) return 0
+        if (memo.has(i)) return memo.get(i)
 
-    let maxAtTwoBefore = nums[0];
-    let maxAtOneBefore = Math.max(nums[0], nums[1]);
-
-    for (let i = 2; i < nums.length; i++) {
-        const maxAtCurrent = Math.max(nums[i] + maxAtTwoBefore, maxAtOneBefore);
-
-        maxAtTwoBefore = maxAtOneBefore
-        maxAtOneBefore = maxAtCurrent
+        let max = Math.max(dfs(i + 1), dfs(i + 2) + nums[i])
+        memo.set(i, max)
+        return max
     }
 
-    return maxAtOneBefore
+    return dfs(0)
 };
