@@ -1,5 +1,5 @@
 var removeNthFromEnd = function (head, n) {
-  let fast = (slow = head);
+  let fast = slow = head;
   for (let i = 0; i < n; i++) fast = fast.next;
   if (!fast) return head.next;
   while (fast.next) {

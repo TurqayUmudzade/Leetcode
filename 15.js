@@ -1,44 +1,27 @@
+var threeSum = function (nums) {
+    nums.sort((a, b) => a - b);
+    const result = [];
 
+    for (let i = 0; i < nums.length; i++) {
+        let low = i + 1, high = nums.length - 1, sum = 0;
 
-var threeSum = function (arr) {
-    arr.sort((a, b) => a - b)
-    let ans = []
+        while (low < high) {
+            sum = nums[i] + nums[low] + nums[high];
 
-    for (let i = 0; i < arr.length; i++) {
-        if (arr[i] > 0) break
-
-        if (arr[i] !== arr[i - 1] || i == 0) {
-            let cur = twoSum(arr, i + 1, -arr[i])
-
-            if (cur.length > 0) {
-                for (const a of cur) ans.push([arr[i], ...a])
-
-            }
+            if (sum === 0) {
+                result.push([nums[i], nums[low], nums[high]]);
+                while (nums[low + 1] === nums[low]) low++;
+                while (nums[high - 1] === nums[high]) high--;
+                low++;
+                high--;
+            } else if (sum < 0) low++;
+            else high--;
         }
+        while (nums[i + 1] === nums[i]) i++;
     }
-    return ans
+    return result;
 };
 
-
-function twoSum(arr, l, sum) {
-    let set = new Set()
-    let r = arr.length - 1
-    let ans = []
-    while (l < r) {
-        if (arr[l] + arr[r] === sum) {
-            if (set.has(arr[l] + "|" + arr[r])) {
-                l++
-                continue
-            }
-            set.add(arr[l] + "|" + arr[r])
-            ans.push([arr[l], arr[r]])
-        }
-        else if (arr[l] + arr[r] > sum) { r--; continue }
-        l++
-    }
-
-    return ans
-};
 
 let nums = [-1, 0, 1, 2, -1, -4]
-
+console.log(threeSum(nums));
