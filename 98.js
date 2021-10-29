@@ -26,3 +26,10 @@ const isValidBST = (root, min = null, max = null) => {
 }
 
 
+
+
+const isValidBST = (root, min = null, max = null) => {
+    if (!root) return true;
+
+
+}

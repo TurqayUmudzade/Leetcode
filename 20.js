@@ -1,15 +1,17 @@
-var isValid = function (s) {
-    let stack = []
-    for (let i = 0; i < s.length; i++) {
+const isValid = (s) => {
 
-        if (s[i] === '(' || s[i] === '{' || s[i] === '[') stack.push(s[i])
-        else if (stack[stack.length - 1] === '(' && s[i] === ")") stack.pop()
-        else if (stack[stack.length - 1] === '{' && s[i] === "}") stack.pop()
-        else if (stack[stack.length - 1] === '[' && s[i] === "]") stack.pop()
+    let stack = []
+    for (const c of s) {
+
+        if (c === '(' || c === '{' || c === '[') stack.push(c)
+        else if (stack[stack.length - 1] === '(' && c === ")") stack.pop()
+        else if (stack[stack.length - 1] === '{' && c === "}") stack.pop()
+        else if (stack[stack.length - 1] === '[' && c === "]") stack.pop()
         else return false
     }
 
-    if (stack[0]) return false
-    return true
+    return stack.length === 0
+}
 
-};
+
+console.log(isValid('()'));
