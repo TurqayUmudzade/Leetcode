@@ -23,3 +23,35 @@ var searchRange = function (arr, target) {
 };
 
 console.log(searchRange([1], 1));
+
+
+var searchRange = function (arr, target) {
+
+    let l = 0
+    let r = arr.length - 1
+    let ans = [-1, -1]
+    while (l <= r) {
+        let mid = ((l + r) / 2) | 0
+        if (arr[mid] >= target) r = mid - 1
+        else l = mid + 1
+    }
+
+    if (arr[l] != target) return ans
+    ans[0] = l
+
+    l = 0
+    r = arr.length - 1
+
+    while (l <= r) {
+        let mid = ((l + r) / 2) | 0
+        if (arr[mid] > target) {
+            r = mid - 1
+        } else if (arr[mid] >= target) l = mid + 1
+    }
+
+    ans[1] = r
+
+    return ans
+};
+
+
