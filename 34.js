@@ -1,57 +1,19 @@
-var searchRange = function (arr, target) {
-
-    let l = 0
-    let r = arr.length - 1
-    let out = [-1, -1]
-
-    while (l < r) {
-        let mid = (l + r) / 2 | 0;
-        if (arr[mid] < target) l = mid + 1;
-        else r = mid;
+var searchRange = function (nums, target) {
+    if (nums.length === 0) {
+        return [-1, -1];
     }
-    if (arr[l] != target) return out;
-    else out[0] = l;
-
-    r = arr.length - 1;
-    while (l < r) {
-        let mid = (l + r) / 2 + 1;
-        if (arr[mid] > target) r = mid - 1;
-        else l = mid;
+    let lo = 0, hi = nums.length - 1;
+    while (lo < hi) {
+        const mid = parseInt((lo + hi) / 2);
+        nums[mid] >= target ? hi = mid : lo = mid + 1;
     }
-    out[1] = r;
-    return out;
+    if (nums[lo] !== target) {
+        return [-1, -1];
+    }
+    const a = lo; hi = nums.length - 1;
+    while (lo < hi) {
+        const mid = parseInt((lo + hi) / 2);
+        nums[mid] <= target ? lo = mid + 1 : hi = mid;
+    }
+    return nums[hi] === target ? [a, hi] : [a, hi - 1];
 };
-
-console.log(searchRange([1], 1));
-
-
-var searchRange = function (arr, target) {
-
-    let l = 0
-    let r = arr.length - 1
-    let ans = [-1, -1]
-    while (l <= r) {
-        let mid = ((l + r) / 2) | 0
-        if (arr[mid] >= target) r = mid - 1
-        else l = mid + 1
-    }
-
-    if (arr[l] != target) return ans
-    ans[0] = l
-
-    l = 0
-    r = arr.length - 1
-
-    while (l <= r) {
-        let mid = ((l + r) / 2) | 0
-        if (arr[mid] > target) {
-            r = mid - 1
-        } else if (arr[mid] >= target) l = mid + 1
-    }
-
-    ans[1] = r
-
-    return ans
-};
-
-
