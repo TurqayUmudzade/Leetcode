@@ -19,17 +19,16 @@ var kthSmallest = function (root, k) {
 
 
 var kthSmallest = function (root, k) {
-
-    if (!root) return null
     let arr = []
 
-    const dfs = (root) => {
+    let dfs = (root) => {
         if (!root) return
         dfs(root.left)
         arr.push(root.val)
         dfs(root.right)
     }
 
+    dfs(root)
     return arr[k - 1]
 };
 

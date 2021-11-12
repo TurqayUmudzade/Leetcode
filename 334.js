@@ -1,10 +1,11 @@
-var reverseString = function (s) {
-  for (let i = 0; i < s.length / 2; i++) {
-    let temp = s[i];
-    s[i] = s[s.length - 1 - i];
-    s[s.length - 1 - i] = temp;
-  }
-  return s;
-};
+var increasingTriplet = function (arr) {
+    let min = Number.MAX_SAFE_INTEGER
+    let min2 = min
 
-console.log(reverseString(["h", "e", "l", "l", "o"]));
+    for (const n of arr) {
+        if (n <= min) min = n
+        else if (n <= min2) min2 = n
+        else return true
+    }
+    return false
+};
