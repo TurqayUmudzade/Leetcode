@@ -15,18 +15,13 @@ const maxDepth = (root) => {
 
     return depth
 }
-
-const maxDepth = (root) => {
-    let maxDepth = 0
-    const dfs = (root, depth) => {
-        if (!root) {
-            maxDepth = Math.max(maxDepth, depth)
-            return
-        }
-        dfs(root.left, depth + 1)
-        dfs(root.right, depth + 1)
+var maxDepth = function (root) {
+    let depth = 0
+    let dfs = (root, depth) => {
+        if (!root) return depth
+        return Math.max(dfs(root.left, depth + 1), dfs(root.right, depth + 1))
     }
+    return dfs(root, depth)
+};
 
-    dfs(root, 0)
-    return maxDepth
-}
+

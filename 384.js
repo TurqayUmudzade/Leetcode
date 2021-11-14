@@ -1,29 +1,19 @@
-/**
- * @param {number[]} nums
- */
-var Solution = function (nums) {
-    this.arr = nums
-};
+class Solution {
 
-/**
- * Resets the array to its original configuration and return it.
- * @return {number[]}
- */
-Solution.prototype.reset = function () {
+    constructor(arr) {
+        this.arr = arr
+    }
 
-};
+    reset() {
+        return this.arr
+    }
 
-/**
- * Returns a random shuffling of the array.
- * @return {number[]}
- */
-Solution.prototype.shuffle = function () {
-
-};
-
-/**
- * Your Solution object will be instantiated and called as such:
- * var obj = new Solution(nums)
- * var param_1 = obj.reset()
- * var param_2 = obj.shuffle()
- */
+    shuffle() {
+        let array = this.arr.slice()
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+        }
+        return array
+    }
+}

@@ -1,27 +1,31 @@
-var isPalindrome = function (head) {
+function isPalindrome(head) {
+    let n = getSize(head)
 
-    if (!head) return false
-    let arr = []
+    let p = head
+    for (let i = 1; i < n / 2; i++) {
+        p = p.next
+    }
 
-    while (head) {
-        arr.push(head.val)
+    let p = head
+    for (let i = 1; i <= n / 2; i++) {
+        let j = i
+        let temp = head;
+        while (j < n - 2) {
+            temp = temp.next
+        }
+        if (temp != head) return false
         head = head.next
     }
 
-    let len = arr.length % 2 === 0 ? arr.length / 2 : arr.length / 2 - 1
-    for (let i = 0; i < len; i++)
-        if (arr[i] !== arr[arr.length - 1 - i]) return false;
-
     return true
-};
+}
 
 
-let str = "12345678"
-
-let arr = [...str]
-
-for (let i = 0; i < arr.length / 2; i++) {
-    const element = arr[i];
-    console.log(element)
-
+function getSize(head) {
+    let n = 0
+    while (head) {
+        head = head.next
+        n++
+    }
+    return n
 }
