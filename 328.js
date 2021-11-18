@@ -4,7 +4,7 @@ function ListNode(val, next) {
   this.next = (next === undefined ? null : next)
 }
 
-
+//!READ THE QUESTION
 function oddEvenList(head) {
   if (!head) return head;
 
@@ -19,3 +19,4 @@ function oddEvenList(head) {
   odd.next = even;
   return head;
 }
+
