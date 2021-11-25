@@ -1,5 +1,3 @@
-//PRE
-
 class Leaderboard {
     constructor() {
         this.map = new Map()

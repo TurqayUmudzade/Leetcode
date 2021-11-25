@@ -1,5 +1,3 @@
-
-
 var compress = function (chars) {
 
     let index = 0;
