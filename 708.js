@@ -1,30 +1,29 @@
-var insert = function (head, insertVal) {
-    let newNode = new Node(insertVal, null);
+var insert = function (head, val) {
+    let newNode = new Node(val)
     if (!head) {
-        newNode.next = newNode;
-        return newNode;
+        newNode.next = newNode
+        return newNode
     }
-    let inserted = false;
-    let cur = head;
-    while (!inserted) {
-        let curVal = cur.val, nextVal = cur.next.val;
-        if ((curVal > nextVal && insertVal <= nextVal) // minimum
-            || (curVal > nextVal && insertVal > curVal) // maximum
-            || (insertVal > curVal && insertVal <= nextVal) // general
-        ) {
-            newNode.next = cur.next;
-            cur.next = newNode;
-            inserted = true;
+
+    isInserted = false
+    let p = head
+    while (!isInserted) {
+        let cur = head.val
+        let next = head.next.val
+        if ((cur < val && val <= next) || (next < cur && val > cur) || (next < cur && val <= next)) {
+            newNode.next = head.next
+            head.next = newNode
+            isInserted = true
         }
-        cur = cur.next;
-        // we've made a full circle
-        if (!inserted && cur === head) {
-            newNode.next = cur.next;
-            cur.next = newNode;
-            inserted = true;
+
+        head = head.next
+        if (!isInserted && head == p) {
+            newNode.next = head.next
+            head.next = newNode
+            isInserted = true
         }
+
     }
-    return head;
-    // T.C: O(N)
-    // S.C: O(1)
+
+    return p;
 };

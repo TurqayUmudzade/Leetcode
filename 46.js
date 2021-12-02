@@ -1,25 +1,19 @@
-var permute = function (nums) {
-    let ans = [];
-    dfs(nums, [], Array(nums.length).fill(false), ans);
-    return ans;
-}
+var permute = function (arr) {
 
+    let ans = []
+    let n = arr.length
+    let dfs = (comb) => {
+        if (comb.length == n) {
+            ans.push(comb)
+            return
+        }
 
-function dfs(nums, path, used, ans) {
-    if (path.length == nums.length) {
-        // make a deep copy since otherwise we'd be append the same list over and over
-        ans.push(Array.from(path));
-        return;
+        for (let i = 0; i < arr.length; i++) {
+            dfs([...comb, arr[i]])
+        }
     }
-    for (let i = 0; i < nums.length; i++) {
-        // skip used letters
-        if (used[i]) continue;
-        // add letter to permutation, mark letter as used
-        path.push(nums[i]);
-        used[i] = true;
-        dfs(nums, path, used, ans);
-        // remove letter from permutation, mark letter as unused
-        path.pop();
-        used[i] = false;
-    }
-}
+
+    dfs([])
+
+    return ans.map(arr => [...new Set(arr)]).filter(arr => arr.length == n)
+};
