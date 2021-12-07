@@ -24,6 +24,3 @@ var topKFrequent = function (arr, k) {
 };
 
 console.log(topKFrequent([1, 1, 1, 2, 2, 3], 2));
-
-turgay.umudzada
-0703008812tT /

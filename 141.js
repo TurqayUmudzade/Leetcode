@@ -1,10 +1,10 @@
 var hasCycle = function (head) {
-  if (!head || !head.next) return false;
-  let cur = head;
-  while (cur) {
-    if (cur.hasVisited) return true;
-    cur.hasVisited = true;
-    cur = cur.next;
+
+  let fast = head
+  while (fast && fast.next && fast.next.next) {
+    head = head.next
+    fast = fast.next.next
+    if (head == fast) return true
   }
-  return false;
+  return false
 };
