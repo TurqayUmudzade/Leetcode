@@ -1,4 +1,4 @@
-var countComponents = function (n, edges) {
+var validTree = function (n, edges) {
 
     class UnionFind {
         constructor(n) {
@@ -17,15 +17,16 @@ var countComponents = function (n, edges) {
             if (rootX !== rootY) {
                 this.parent[rootY] = rootX;
                 this.groups--;
+                return true
             }
+            return false
         }
     }
 
-    const dsu = new UnionFind(n)
+    let dsu = new UnionFind(n)
 
-    for (const arr of egdes) {
-        dsu.union(arr[0], arr[1])
+    for (const arr of edges) {
+        if (!dsu.union(arr[0], arr[1])) return false
     }
-
-    return dsu.groups
+    return true
 };
