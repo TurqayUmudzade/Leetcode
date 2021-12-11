@@ -1,10 +1,12 @@
-//!
-const twoCitySchedCost = function (costs) {
-    let cost = 0;
-    costs = costs.sort((a, b) => a[0] - a[1] - (b[0] - b[1]));
+var twoCitySchedCost = function (costs) {
+    costs = costs.sort((a, b) => (b[0] - b[1]) - (a[0] - a[1]));
 
+    let ans = 0;
     for (let i = 0; i < costs.length / 2; i++)
-        cost += costs[i][0] + costs[halfway + i][1];
+        ans += costs[i][1];
 
-    return cost;
+    for (leti = costs.length / 2; i < costs.length; i++)
+        ans += costs[i][0];
+
+    return ans;
 };
