@@ -1,0 +1,3 @@
+var numTilings = function (n) {
+
+};
