@@ -5,7 +5,7 @@ const lowestCommonAncestor = (root, p, q) => {
             root = root.left
         } else if (p.val > root.val && q.val > root.val) {
             root = root.right
-        } else break;
+        } else break
     }
     return root
 };
