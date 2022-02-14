@@ -1,0 +1,3 @@
+var hasGroupsSizeX = function (deck) {
+
+};

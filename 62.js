@@ -1,10 +1,12 @@
 var uniquePaths = function (m, n) {
-    let memo = new Map()
-    let helper = (x, y) => {
-        if (x > m || y > n) return 0
-        if (x == m && y == n) return 1
-        if (!memo.has(x + "/" + y)) memo.set(x + "/" + y, helper(x + 1, y) + helper(x, y + 1))
-        return memo.get(x + "/" + y)
+
+    let memo = new Array(n + 1).fill(new Array(m + 1))
+    let dfs = (i, j) => {
+        if (m < i || j > n) return 0
+        if (m === i && j === n) return 1
+        if (memo[i][j]) return memo[i][j]
+        memo[i][j] = dfs(i + 1, j) + dfs(i, j + 1)
+
     }
-    return helper(1, 1)
+    return dfs(1, 1)
 };
