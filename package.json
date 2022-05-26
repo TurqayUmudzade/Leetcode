@@ -18,7 +18,8 @@
   },
   "homepage": "https://github.com/TurqayUmudzade/Leetcode#readme",
   "dependencies": {
-    "@datastructures-js/priority-queue": "^5.1.1"
+    "@datastructures-js/priority-queue": "^5.1.1",
+    "nodemon": "^2.0.16"
   },
   "type": "module"
 }
