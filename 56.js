@@ -1,19 +1,21 @@
 const merge = (arr) => {
-
-    if (!arr.length) return arr
     if (arr.length === 1) return arr
-
     arr.sort((a, b) => a[0] - b[0])
 
-    let ans = []
-    let temp = arr[0]
-    for (let i = 1; i < arr.length; i++) {
-        if (temp[1] >= arr[i][0]) temp = [temp[0], Math.max(arr[i][1], temp[1])]
-        else {
-            ans.push(temp)
-            temp = arr[i]
+    let ans = [arr[0]]
+    for (let i = 0; i < arr.length - 1; i++) {
+        let temp = ans[ans.length - 1]
+        if (temp[1] >= arr[i + 1][0]) {
+            ans.pop()
+            let max = Math.max(temp[1], arr[i + 1][1])
+            ans.push([temp[0], max])
+        } else {
+            ans.push(arr[i + 1])
         }
     }
-    ans.push(temp)
     return ans
 };
+
+
+let intervals = [[1, 4], [0, 2], [3, 5]]
+console.log(merge(intervals));

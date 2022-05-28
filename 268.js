@@ -1,9 +1,8 @@
 var missingNumber = function (arr) {
-    let set = new Set()
-    arr.forEach(element => set.add(element));
-
-    for (let i = 0; i < arr.length; i++)
-        if (!set.has(i)) return i
-
-    return arr.length
+    let max = arr.length
+    let sum = (max * (max + 1)) / 2
+    for (let i = 0; i < arr.length; i++) {
+        sum -= arr[i];
+    }
+    return sum
 };
