@@ -18,9 +18,8 @@ var middleNode = function (head) {
         len++
     }
 
-    for (let i = 0; i < len / 2; i++) {
+    for (let i = 1; i < len / 2; i++) {
         head = head.next
     }
-
     return len % 2 == 0 ? head.next : head
-};
+};  
