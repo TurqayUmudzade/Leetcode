@@ -10,7 +10,7 @@ function combine(n, k) {
         if (depth > n) return
 
         traverse(arr, depth + 1);
-        traverse(arr.concat(depth), depth + 1);
+        traverse([...arr, depth], depth + 1);
     }
 
     traverse([], 1);

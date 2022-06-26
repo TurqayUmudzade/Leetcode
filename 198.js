@@ -20,3 +20,20 @@ function rob(arr) {
     return dp[arr.length - 1]
 }
 
+
+const rob = (arr) => {
+    let robNextPlusOne = 0;
+    let robNext = nums[N - 1];
+
+    for (let i = arr.length - 2; i >= 0; --i) {
+        let current = Math.max(robNext, robNextPlusOne + nums[i]);
+        robNextPlusOne = robNext;
+        robNext = current;
+    }
+
+    return robNext;
+}
+
+
+
+
