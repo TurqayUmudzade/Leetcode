@@ -1,4 +1,4 @@
-var countComponents = function (n, edges) {
+var countComponents1 = function (n, edges) {
 
     class UnionFind {
         constructor(n) {
@@ -29,3 +29,39 @@ var countComponents = function (n, edges) {
 
     return dsu.groups
 };
+
+
+const countComponents = (n, edges) => {
+    let graph = Array.from({ length: n }, () => [])
+
+    for (const [e1, e2] of edges) {
+        graph[e1].push(e2)
+        graph[e2].push(e1)
+    }
+
+    let visited = new Set()
+    let c = 0
+
+    const dfs = (node) => {
+        if (visited.has(node)) return false;
+        visited.add(node)
+        for (const neighbor of graph[node]) {
+            dfs(neighbor)
+        }
+
+        return true
+    }
+
+    for (let i = 0; i < n; i++) {
+        if (dfs(i)) c++
+
+    }
+
+    return c
+};
+
+let n = 5, edges = [[0, 1], [0, 2], [2, 3], [2, 4]]
+console.log(countComponents(n, edges));
+
+
+
