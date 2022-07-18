@@ -1,78 +1,66 @@
-var findCircleNum = function (n, edges) {
-    let visited = [];
-    let graph = buildGraph(n, edges);
-    console.log(graph);
-    let res = 0;
+// var findCircleNum = function (M) {
 
-    for (let i = 0; i < n; i++) {
-        visited.push(false);
-    }
+//     class UnionFind {
+//         constructor(n) {
+//             this.graph = [...Array(n)].map((_, i) => i);
+//             this.groups = n;
+//         }
 
-    // traverse graph
-    for (let i = 0; i < n; i++) {
-        if (visited[i] === false) {
-            res++;
-            dfs(i, graph, visited);
+//         find(id) {
+//             if (this.graph[id] === id) return id;
+//             return this.graph[id] = this.find(this.graph[id]);
+
+//         }
+
+//         union(x, y) {
+//             const rootX = this.find(x);
+//             const rootY = this.find(y);
+//             if (rootX !== rootY) {
+//                 this.graph[rootY] = rootX;
+//                 this.groups--;
+//             }
+//         }
+//     }
+
+//     const N = M.length, dsu = new UnionFind(N);
+
+//     for (let r = 0; r < N; r++) {
+//         for (let c = 0; c < N; c++) {
+//             if (M[r][c]) dsu.union(r, c);
+//         }
+//     }
+//     return dsu.groups;
+// };
+
+
+var findCircleNum = function (matrix) {
+    let graph = Array.from({ length: matrix.length }, () => [])
+    for (let i = 0; i < matrix.length; i++) {
+        for (let j = 0; j < matrix[i].length; j++) {
+            if (i != j && matrix[i][j] === 1) {
+                graph[i].push(j)
+            };
         }
     }
-    return res;
+
+    let seen = new Set()
+    let c = 0
+    const dfs = (node) => {
+        if (seen.has(node)) return false
+        seen.add(node)
+        for (const n of graph[node]) {
+            dfs(n)
+        }
+        return true
+    }
+
+    for (let i = 0; i < matrix.length; i++) {
+        if (dfs(i)) c++
+    }
+    return c
 };
 
-const buildGraph = (n, edges) => {
-    let graph = Array.from({ length: n }, () => []);
-
-    for (let edge of edges) {
-        let [src, dist] = edge;
-        graph[src].push(dist);
-        graph[dist].push(src);
-    }
-    return graph
-}
-
-const dfs = (index, graph, visited) => {
-    visited[index] = true;
-    let nodes = graph[index];
-    for (let i = 0; i < nodes.length; i++) {
-        if (visited[nodes[i]] === false) {
-            dfs(nodes[i], graph, visited)
-        }
-    }
-}
-
-let isConnected = [[1, 1, 0], [1, 1, 0], [0, 0, 1]]
-
-console.log(findCircleNum(isConnected.length, isConnected));
+let isConnected = [[1, 0, 0, 1], [0, 1, 1, 0], [0, 1, 1, 1], [1, 0, 1, 1]]
 
 
-var findCircleNum = function (M) {
-
-    class UnionFind {
-        constructor(n) {
-            this.parent = [...Array(n)].map((_, i) => i);
-            this.groups = n;
-        }
-
-        find(x) {
-            if (this.parent[x] === x) return x;
-            return this.parent[x] = this.find(this.parent[x]);
-        }
-
-        union(x, y) {
-            const rootX = this.find(x);
-            const rootY = this.find(y);
-            if (rootX !== rootY) {
-                this.parent[rootY] = rootX;
-                this.groups--;
-            }
-        }
-    }
-
-    const N = M.length, dsu = new UnionFind(N);
-
-    for (let r = 0; r < N; r++) {
-        for (let c = 0; c < N; c++) {
-            if (M[r][c]) dsu.union(r, c);
-        }
-    }
-    return dsu.groups;
-};
+console.log(findCircleNum(isConnected));
