@@ -1,29 +1,37 @@
 var shortestPath = function (grid, k) {
-
-    let root = [[0, 0]]
-    let dirs = [[0, 1], [0, -1], [1, 0], [-1, 0]]
+    const m = grid.length
+    const n = grid[0].length;
+    const dirs = [[-1, 0], [1, 0], [0, -1], [0, 1]];
+    let set = new Set(["0,0," + k])
     let step = 0
-    while (root.length > 0) {
-        let len = root.length
-        step++
-        for (let i = 0; i < len; i++) {
-            let cur = root.shift()
-            let [x, y] = cur
-            if (x =)
-                grid[x][y] = -1
+    let q = [[0, 0, k]];
+
+    while (q.length) {
+        let len = q.length
+        while (len--) {
+            let [i, j, remainingK] = q.shift()
+            if (i === m - 1 && j === n - 1) return step
+
             for (const [dx, dy] of dirs) {
-                let newX = x + dx
-                let newY = y + dy
-                if (newX >= 0 && newY >= 0 && newX < grid.length && newY < grid[0].length && grid[newX][newY] !== -1) {
-                    root.push([x + dx, y + dy])
+                let newI = dx + i, newJ = dy + j
+
+                if (newI < 0 || newJ < 0 || newI >= m || newJ >= n ||
+                    (grid[newI][newJ] === 1 && remainingK === 0)) continue;
+
+                let newK = grid[newI][newJ] === 1 ? remainingK - 1 : remainingK;
+                let key = newI + "," + newJ + "," + newK
+                if (!set.has(key)) {
+                    q.push([newI, newJ, newK])
+                    set.add(key)
                 }
             }
         }
+        step++;
     }
-    return step
+
+    return -1;
 };
 
-
-let grid = [[0, 0, 0], [1, 1, 0], [0, 0, 0], [0, 1, 1], [0, 0, 0]], k = 1
+let grid = [[0, 1, 1], [1, 1, 1], [1, 0, 0]], k = 1
 
 console.log(shortestPath(grid, k));
