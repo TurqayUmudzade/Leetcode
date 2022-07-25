@@ -1,0 +1,4 @@
+var removeOnes = function (grid) {
+
+
+};
