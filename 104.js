@@ -1,4 +1,4 @@
-const maxDepth = (root) => {
+var maxDepth = (root) => {
     if (!root) return 0
     let q = [root]
     let depth = 0
@@ -20,6 +20,16 @@ var maxDepth = function (root) {
     let dfs = (root, depth) => {
         if (!root) return depth
         return Math.max(dfs(root.left, depth + 1), dfs(root.right, depth + 1))
+    }
+    return dfs(root, depth)
+};
+
+var maxDepth = function (root) {
+
+    let dfs = (root, depth) => {
+        if (!root) return depth
+        dfs(root.left, depth + 1)
+        dfs(root.right, depth + 1)
     }
     return dfs(root, depth)
 };

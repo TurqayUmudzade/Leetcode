@@ -1,27 +1,25 @@
 var getDirections = function (root, startValue, destValue) {
-    const dfs = (node, value, acc = '') => {
-        if (node === null)
-            return '';
-        if (node.val === value)
-            return acc;
 
-        return dfs(node.left, value, acc + 'L') + dfs(node.right, value, acc + 'R')
+
+    const dfs = (root, val, path) => {
+        if (!root) return ""
+        if (root.val === val) return path
+        return dfs(root.left, val, path + "L") || dfs(root.right, val, path + "R")
 
     }
 
-    // generate the paths
-    let startPath = dfs(root, startValue);
-    let destPath = dfs(root, destValue);
+    let sPath = dfs(root, startValue, "")
+    let dPath = dfs(root, destValue, "")
 
-    // find the lowest common ancestor
-    let i = 0;
-    for (; i < startPath.length && i < destPath.length && startPath[i] === destPath[i]; i++);
-
-    // output the final path
-    let output = '';
-    for (let j = i; j < startPath.length; j++) {
-        output += 'U';
+    let len = Math.min(sPath.length, dPath.length)
+    while (len--) {
+        if (sPath.charAt(0) === dPath.charAt(0)) {
+            sPath.shift()
+            dPath.shift()
+        } else break
     }
 
-    return output + destPath.substring(i);
-};  
+    sPath.replaceAll("*", 'U')
+    return sPath + dPath
+};
+

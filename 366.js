@@ -1,27 +1,18 @@
 var findLeaves = function (root) {
-
     let out = []
-    let temp = []
 
-    let dfs = (root) => {
-        if (!root) return
-        if (dfs(root.left)) root.left = null
-        if (dfs(root.right)) root.right = null
-        if (!root.left && !root.right) {
-            temp.push(root.val)
-            return true
-        }
+    let dfs = (root, depth) => {
+        if (!root) return 0
+        let left = dfs(root.left)
+        let right = dfs(root.right)
+        depth = Math.max(left, right)
+        if (out[depth]) out[depth].push(root.val)
+        else out[depth] = [root.val]
 
+        return depth + 1
     }
 
+    dfs(root, 0)
 
-    dfs(root)
-    console.log(temp);
-    console.log(root)
-    //while (root) {
-    //     temp = []
-    //     dfs(root)
-    //     out.push(temp)
-    // }
     return out
-}
+};
