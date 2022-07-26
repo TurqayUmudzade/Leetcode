@@ -1,4 +1,3 @@
 var longestStrChain = function (words) {
 
-
 };

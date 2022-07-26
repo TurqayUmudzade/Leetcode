@@ -35,5 +35,3 @@ const rob = (arr) => {
 }
 
 
-
-
