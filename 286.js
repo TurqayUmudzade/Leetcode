@@ -1,0 +1,3 @@
+var wallsAndGates = function (rooms) {
+
+};
