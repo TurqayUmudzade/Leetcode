@@ -31,8 +31,8 @@ class Node {
 
     constructor(username, time, amount, city) {
         this.username = username
-        this.time = time
-        this.amount = amount
+        this.time = parseInt(time)
+        this.amount = parseInt(amount)
         this.city = city
     }
 

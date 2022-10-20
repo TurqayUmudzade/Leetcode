@@ -1,21 +1,16 @@
-function removeDuplicates(s, k) {
+var removeDuplicates = function (s, k) {
     let stack = [[s[0], 1]]
 
     for (let i = 1; i < s.length; i++) {
-        if (stack[stack.length - 1] && stack[stack.length - 1][0] === s[i])
-            stack[stack.length - 1][1]++
+        if (stack.length && stack[stack.length - 1][0] === s[i]) stack[stack.length - 1][1]++
         else stack.push([s[i], 1])
-
         if (stack[stack.length - 1][1] === k) stack.pop()
     }
+    return stack.reduce((str, [c, f]) => str += c.repeat(f), '');
+};
 
-
-    let str = ""
-    for (const [s, count] of stack)
-        str += s.repeat(count)
-
-    return str
-}
+let s = "deeedbbcccbdaa", k = 3
+console.log(removeDuplicates(s, k));
 
 
 console.log(removeDuplicates("deeedbbcccbdaa", 3));

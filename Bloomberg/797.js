@@ -1,7 +1,7 @@
 var allPathsSourceTarget = function (graph) {
     const paths = []
     const dfs = (cur, path) => {
-        if (path[path.length - 1] === graph.length - 1) {
+        if (cur === graph.length - 1) {
             paths.push(path)
             return
         }

@@ -1,32 +1,21 @@
 var verticalOrder = function (root) {
+    if (!root) return [];
+    let out = []
+    let queue = [[root, 0]];
+    let map = new Map();
 
+    while (queue.length) {
+        let len = queue.length
+        for (let i = 0; i < len; i++) {
+            const [node, index] = queue.shift()
+            if (!map.has(index)) map.set(index, [node.val])
+            else map.set(index, [...map.get(index), node.val])
 
-    function Node(root, level) {
-        this.val = root.val
-        this.level = level || 0
-    }
-
-    let tree = []
-
-    let levelOrder = (root) => {
-        if (!root) return []
-
-        let q = [new Node(root)]
-        while (q.length > 0) {
-            let len = q.length
-            let level = []
-            for (let i = 0; i < len; i++) {
-                let cur = q.shift()
-                level.push([cur.val, cur.level])
-
-                if (cur.left) q.push(new Node(cur.left, cur.level - 1))
-                if (cur.right) q.push(new Node(cur.left, cur.level + 1))
-            }
-            tree.push(level)
+            if (node.left) queue.push([node.left, index - 1])
+            if (node.right) queue.push([node.right, index + 1])
         }
     }
-
-    levelOrder(root)
-    console.log(tree);
+    let keys = [...map.keys()].sort((a, b) => a - b)
+    for (const key of keys) out.push(map.get(key))
+    return out
 };
-
