@@ -1,16 +1,22 @@
-var findJudge = function (n, trust) {
-    let arr = Array.from({ length: n }, () => 0)
-    for (const [edge1, edge2] of trust) {
-        arr[edge1 - 1]--
-        arr[edge2 - 1]++
-    }
+/**
+ * @param {number} n
+ * @param {number[][]} trust
+ * @return {number}
+ */
+var findJudge = function(n, trust) {
+    
+    const outDegree = new Array(n+1).fill(0)
+    const inDegree = new Array(n+1).fill(0)
 
-    for (let i = 0; i < arr.length; i++) {
-        if (arr[i] === n - 1) return i + 1
+    for (const [a,b] of trust){
+        outDegree[a]++
+        inDegree[b]++
     }
-    return -1
+    
+    for(let i = 1; i <= n ; i++){
+        if(outDegree[i] == 0 && inDegree[i] == n-1) return i
+    }
+    
+    
+    return - 1
 };
-
-let n = 3, trust = [[1, 3], [2, 3]]
-
-console.log(findJudge(n, trust));
