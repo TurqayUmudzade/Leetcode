@@ -1,13 +1,14 @@
-var subarraySum = function (arr, k) {
-
-    let map = new Map()
-    map.set(0, 1)
+ */
+var subarraySum = function(nums, k) {
+    let count = 0
     let sum = 0
-    let c = 0
-    for (let i = 0; i < arr.length; i++) {
-        sum += arr[i]
-        if (map.has(sum - k)) c += map.get(sum - k)
-        map.set(sum, (map.has(sum) ? map.get(sum) : 0) + 1)
+    let map = new Map([[0,1]])
+
+    for (let i = 0; i < nums.length; i++){
+        sum = sum + nums[i]
+        if(map.has(sum - k)) count+= map.get(sum-k)
+        map.set(sum, (map.get(sum) || 0) + 1)
     }
-    return c
+
+    return count
 };

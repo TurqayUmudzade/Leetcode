@@ -1,13 +1,21 @@
-var groupAnagrams = function (strs) {
-    let m = new Map();
-    for (let str of strs) {
-        let sorted = str.split("").sort().join("");
-        if (m.has(sorted)) m.set(sorted, [...m.get(sorted), str]);
-        else m.set(sorted, [str]);
+/**
+ * @param {string[]} strs
+ * @return {string[][]}
+ */
+//yo
+var groupAnagrams = function(strs) {
+    const anagrams = strs.map(str =>
+        str.split("").sort().join("")
+    )
+
+    const map = new Map()
+    //btw you can merge 2 loops
+    for(let i = 0; i < anagrams.length ; i++){
+        const anagram = anagrams[i]
+        if(!map.has(anagram)) map.set(anagram,[])
+        map.get(anagram).push(strs[i])
     }
-    return Array.from(m.values());
+
+
+    return [...map.values()]
 };
-
-let strs = ["eat", "tea", "tan", "ate", "nat", "bat"]
-
-console.log(groupAnagrams(strs))
