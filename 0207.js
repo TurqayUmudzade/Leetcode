@@ -1,26 +1,30 @@
-var canFinish = function (numCourses, prerequisites) {
-    let g = Array.from({ length: numCourses }, () => [])
-    for (const [a, b] of prerequisites) g[a].push(b)
+var canFinish = function (n, prerequisites) {
+    const graph = Array.from({ length: n }, () => [])
 
-    let visited = new Set()
-    let visiting = new Set()
+    for (const [a, b] of prerequisites) {
+        graph[b].push(a)
+    }
 
-    const hasCycle = (node) => {
-        visiting.add(node)
-        for (const edge of g[node]) {
-            if (visited.has(edge)) continue
-            if (visiting.has(edge)) return true
-            if (hasCycle(edge)) return true
+    const canTake = new Set()
+    const seen = new Set()
+
+    const dfs = (node) => {
+        if(seen.has(node)) return false
+        if(canTake.has(node)) return true
+
+        seen.add(node)
+
+        for (const neighbor of graph[node]){
+            if(!dfs(neighbor)) return false
         }
-
-        visiting.delete(node)
-        visited.add(node)
-        return false
+        seen.delete(node)
+        canTake.add(node)
+        return true
     }
 
-    for (let i = 0; i < numCourses; i++) {
-        if (hasCycle(i)) return false;
+    for (let i = 0; i < n; i++) {
+        if (!dfs(i)) return false
     }
 
-    return true;
-};
+    return true
+}
