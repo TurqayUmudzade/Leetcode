@@ -1,29 +1,29 @@
-var findTilt = function (root) {
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {number}
+ */
+var findTilt = function(root) {
 
-    let total = 0
+    let sum = 0
 
-    let dfs = (root) => {
-        if (!root) return
-        total += Math.abs(sum(root.left) - sum(root.right))
-        dfs(root.left)
-        dfs(root.right)
+    const dfs = (node) =>{
+        if(!node) return 0
+
+        const left = dfs(node.left)
+        const right = dfs(node.right)
+        const tilt = Math.abs(left-right)
+        sum+=tilt
+        return left+right+node.val
     }
 
     dfs(root)
-
-    return total
+    return sum
 };
-
-function sum(root) {
-    let total = 0
-    let dfs = (root) => {
-        if (!root) return
-        total += root.val
-        dfs(root.left)
-        dfs(root.right)
-    }
-
-    dfs(root)
-
-    return total
-}
