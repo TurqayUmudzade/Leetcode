@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NeetCode 250 Practice</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎯</text></svg>">
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>NeetCode 250</h1>
+            <p class="subtitle">Master your coding interview preparation</p>
+        </div>
+
+        <div class="stats">
+            <div class="stat">
+                <span class="stat-number" id="total">0</span>
+                <span class="stat-label">Total</span>
+            </div>
+            <div class="stat">
+                <span class="stat-number" id="solved">0</span>
+                <span class="stat-label">Solved</span>
+            </div>
+            <div class="stat">
+                <span class="stat-number" id="attempted">0</span>
+                <span class="stat-label">Attempted</span>
+            </div>
+            <div class="stat">
+                <span class="stat-number" id="remaining">0</span>
+                <span class="stat-label">Remaining</span>
+            </div>
+        </div>
+
+        <div class="filters">
+            <label>
+                <input type="checkbox" id="filterUnsolved" checked> Include Solved
+            </label>
+            <label>
+                <input type="checkbox" id="filterAttempted" checked> Include Attempted
+            </label>
+            <select id="difficultyFilter">
+                <option value="all">All Difficulties</option>
+                <option value="Easy">Easy</option>
+                <option value="Medium">Medium</option>
+                <option value="Hard">Hard</option>
+            </select>
+            <select id="categoryFilter">
+                <option value="all">All Categories</option>
+            </select>
+        </div>
+
+        <button class="random-btn" id="randomBtn">
+            <span>🎲</span>
+            <span>Get Random Question</span>
+        </button>
+
+        <div class="question-card" id="questionCard" style="display: none;">
+            <div class="question-header">
+                <span class="question-number" id="questionNumber"></span>
+                <span class="question-difficulty" id="questionDifficulty"></span>
+            </div>
+            <h2 class="question-title" id="questionTitle"></h2>
+            <div class="question-category" id="questionCategory"></div>
+            <a class="question-link" id="questionLink" href="#" target="_blank">Open on LeetCode →</a>
+
+            <div class="question-actions">
+                <button class="btn btn-attempted" id="markAttempted">📝 Mark Attempted</button>
+                <button class="btn btn-solved" id="markSolved">✅ Mark Solved</button>
+                <button class="btn btn-reset" id="markReset">↩️ Reset</button>
+            </div>
+
+            <div class="question-status" id="questionStatus"></div>
+        </div>
+
+        <div class="progress-section">
+            <h3>Progress by Category</h3>
+            <div id="categoryProgress"></div>
+        </div>
+
+        <div class="all-questions">
+            <h3>All Questions <button class="toggle-btn" id="toggleList">Show List</button></h3>
+            <div id="questionList" style="display: none;"></div>
+        </div>
+
+        <div class="actions-bottom">
+            <button class="btn btn-export" id="exportBtn">
+                <span>📤</span>
+                <span>Export</span>
+            </button>
+            <button class="btn btn-import" id="importBtn">
+                <span>📥</span>
+                <span>Import</span>
+            </button>
+            <input type="file" id="importFile" accept=".json" style="display: none;">
+            <button class="btn btn-clear" id="clearBtn">
+                <span>🗑️</span>
+                <span>Clear Progress</span>
+            </button>
+        </div>
+
+        <div class="footer">
+            <p>Built for interview prep • <a href="https://neetcode.io" target="_blank">NeetCode.io</a></p>
+        </div>
+    </div>
+
+    <script src="questions.js"></script>
+    <script src="app.js"></script>
+</body>
+
+</html>
