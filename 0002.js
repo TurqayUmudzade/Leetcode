@@ -1,38 +1,39 @@
 /**
- * Definition for singly-linked list.
- * function ListNode(val, next) {
- *     this.val = (val===undefined ? 0 : val)
- *     this.next = (next===undefined ? null : next)
- * }
+ * @param {number[][]} grid
+ * @return {number}
  */
-/**
- * @param {ListNode} l1
- * @param {ListNode} l2
- * @return {ListNode}
- */
-var addTwoNumbers = function(l1, l2) {
-    let out = new ListNode(0)
-    const head = out
-    let carry = 0
+var maximumSafenessFactor = function (grid) {
+  const m = grid.length
+  const n = grid[0].length
+  const q = []
 
-    while (l1 || l2) {
-        const l1Val = l1 ? l1.val : 0
-        const l2Val = l2 ? l2.val : 0
-        const sum = l1Val +l2Val + carry
-        if (sum >= 10) carry = 1
-        else carry = 0 
-        out.next = new ListNode(sum%10)
+  function inBounds(i, j) {
+    return i >= 0 && i < m && j >= 0 && j < n
+  }
 
-        out = out.next
-        l1 = l1?.next
-        l2 = l2?.next
+  const dirs = [
+    [1, 0], // down
+    [-1, 0], // up
+    [0, 1], // right
+    [0, -1], // left
+  ]
+
+  for (let i = 0; i < m; i++) {
+    for (let j = 0; j < n; j++) {
+      if (grid[i][j] == 1) q.push([i, j, 0])
     }
+  }
 
-    if(carry){
-        out.next = new ListNode(1)
+  while (q.length) {
+    const len = q.length
+    for (let iter = 0; iter < len; iter++) {
+      const [i, j, level] = q.shift()
+
+      if (!inBounds(i, j)) continue
+      grid[i][j] = Math.max(grid[i][j], level)
+      for (const [di, dj] of dirs) {
+        q.push(di + i, dj + j, level + 1)
+      }
     }
-
-
-    return head.next
-    
-};
+  }
+}
